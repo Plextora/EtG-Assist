@@ -74,7 +74,7 @@ namespace EtG_Assist
                 {
                     while (!Console.KeyAvailable)
                     {
-                        memoryManager.WriteMemory("mono.dll+00500AC8,20,F08,268,1C8,D8,50,118", "float", "3");
+                        memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,80,18,50,118", "float", "3");
 
                         Thread.Sleep(500);
                     }
