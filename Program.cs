@@ -1,4 +1,6 @@
-﻿namespace EtG_Assist
+﻿using Memory;
+
+namespace EtG_Assist
 {
     internal class Program
     {
