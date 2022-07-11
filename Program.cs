@@ -85,17 +85,12 @@ namespace EtG_Assist
 
             void infShells()
             {
-                Console.WriteLine("Starting Infinite Shells! To exit, press L");
+                Console.WriteLine("Gave Player 100 million shells!");
 
-                do
-                {
-                    while (!Console.KeyAvailable)
-                    {
-                        memoryManager.WriteMemory("mono.dll+00264A68,C0,E90,A8,198,1C", "int", "100000000");
+                memoryManager.WriteMemory("mono.dll+00264A68,C0,E90,A8,198,1C", "int", "100000000");
 
-                        Thread.Sleep(500);
-                    }
-                } while (Console.ReadKey(true).Key != ConsoleKey.L);
+                Thread.Sleep(2000);
+
                 Console.Clear();
                 menu();
             }
