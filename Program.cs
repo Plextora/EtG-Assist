@@ -49,11 +49,15 @@ namespace EtG_Assist
                 Console.WriteLine("For example, to choose \"Infinite Health\" you would type \"1\" and press enter!\n");
 
                 Console.WriteLine("[1] Infinite Health");
+                Console.WriteLine("[2] Infinite Shells");
 
                 switch (Console.ReadLine())
                 {
                     case "1":
                         infHealth();
+                        break;
+                    case "2":
+                        infShells();
                         break;
                     default:
                         Console.Clear();
@@ -71,6 +75,23 @@ namespace EtG_Assist
                     while (!Console.KeyAvailable)
                     {
                         memoryManager.WriteMemory("mono.dll+00500AC8,20,F08,268,1C8,D8,50,118", "float", "3");
+
+                        Thread.Sleep(500);
+                    }
+                } while (Console.ReadKey(true).Key != ConsoleKey.L);
+                Console.Clear();
+                menu();
+            }
+
+            void infShells()
+            {
+                Console.WriteLine("Starting Infinite Shells! To exit, press L");
+
+                do
+                {
+                    while (!Console.KeyAvailable)
+                    {
+                        memoryManager.WriteMemory("mono.dll+00264A68,C0,E90,A8,198,1C", "int", "100000000");
 
                         Thread.Sleep(500);
                     }
