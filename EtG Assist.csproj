@@ -2,11 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>EtG_Assist</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64</Platforms>
+    <StartupObject>EtG_Assist.Program</StartupObject>
+    <Company>Plextora</Company>
+    <Description>Cheats for the game Enter the Gungeon</Description>
+    <PackageProjectUrl>https://github.com/Plextora/EtG-Assist</PackageProjectUrl>
+    <Authors>Plextora</Authors>
   </PropertyGroup>
 
   <ItemGroup>
