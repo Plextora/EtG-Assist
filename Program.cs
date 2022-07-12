@@ -74,9 +74,17 @@ namespace EtG_Assist
                 {
                     while (!Console.KeyAvailable)
                     {
-                        memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,80,18,50,118", "float", "3");
+                        if (Process.GetProcessesByName("EtG").Length > 0)
+                        {
+                            memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,80,18,50,118", "float", "3");
 
-                        Thread.Sleep(500);
+                            Thread.Sleep(500);
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            menu();
+                        }
                     }
                 } while (Console.ReadKey(true).Key != ConsoleKey.L);
                 Console.Clear();
