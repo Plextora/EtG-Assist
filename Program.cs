@@ -76,7 +76,7 @@ namespace EtG_Assist
                     {
                         if (Process.GetProcessesByName("EtG").Length > 0)
                         {
-                            memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,80,18,50,118", "float", "10");
+                            memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,10,30,30,38,28,118", "float", "10");
 
                             Thread.Sleep(500);
                         }
