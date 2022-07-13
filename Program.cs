@@ -110,9 +110,28 @@ namespace EtG_Assist
                     {
                         if (Process.GetProcessesByName("EtG").Length > 0)
                         {
-                            memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,10,30,30,38,28,118", "float", "10");
+                            try
+                            {
+                                memoryManager.WriteMemory("UnityPlayer.dll+0146FCC8,120,10,30,30,38,28,118", "float", "10");
 
-                            Thread.Sleep(500);
+                                Thread.Sleep(500);
+                            }
+                            catch (System.OverflowException e)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+
+                                Console.WriteLine("\n[!] Error when writing memory [!]\n");
+                                Console.WriteLine(e);
+
+                                Console.ForegroundColor = ConsoleColor.Gray;
+
+                                Console.WriteLine("\nPress any key to continue...");
+
+                                Console.ReadLine();
+
+                                Console.Clear();
+                                menu();
+                            }
                         }
                         else
                         {
@@ -127,14 +146,33 @@ namespace EtG_Assist
 
             void infShells()
             {
-                Console.WriteLine("Gave Player 100 million shells!");
+                try
+                {
+                    memoryManager.WriteMemory("mono.dll+00264A68,C0,E90,A8,198,1C", "int", "100000000");
 
-                memoryManager.WriteMemory("mono.dll+00264A68,C0,E90,A8,198,1C", "int", "100000000");
+                    Console.WriteLine("Gave Player 100 million shells!");
 
-                Thread.Sleep(2000);
+                    Thread.Sleep(2000);
 
-                Console.Clear();
-                menu();
+                    Console.Clear();
+                    menu();
+                }
+                catch (System.OverflowException e)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("\n[!] Error when writing memory [!]\n");
+                    Console.WriteLine(e);
+
+                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    Console.WriteLine("\nPress any key to continue...");
+
+                    Console.ReadLine();
+
+                    Console.Clear();
+                    menu();
+                }
             }
         }
     }
