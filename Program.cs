@@ -11,6 +11,8 @@ namespace EtG_Assist
 
         static void Main(string[] args)
         {
+            System.AppDomain.CurrentDomain.UnhandledException += errorDump;
+
             Console.WriteLine(@"
 ███████╗████████╗░██████╗░  ░█████╗░░██████╗░██████╗██╗░██████╗████████╗
 ██╔════╝╚══██╔══╝██╔════╝░  ██╔══██╗██╔════╝██╔════╝██║██╔════╝╚══██╔══╝
@@ -18,6 +20,38 @@ namespace EtG_Assist
 ██╔══╝░░░░░██║░░░██║░░╚██╗  ██╔══██║░╚═══██╗░╚═══██╗██║░╚═══██╗░░░██║░░░
 ███████╗░░░██║░░░╚██████╔╝  ██║░░██║██████╔╝██████╔╝██║██████╔╝░░░██║░░░
 ╚══════╝░░░╚═╝░░░░╚═════╝░  ╚═╝░░╚═╝╚═════╝░╚═════╝░╚═╝╚═════╝░░░░╚═╝░░░");
+
+            static void errorDump(object sender, UnhandledExceptionEventArgs e)
+            {
+                string etgDirectory = $@"C:\Users\{Environment.UserName}\AppData\Roaming\EtG Assist";
+
+                string errPath = $@"C:\Users\{Environment.UserName}\AppData\Roaming\EtG Assist\err.txt";
+
+                if (!Directory.Exists(etgDirectory))
+                {
+                    Directory.CreateDirectory(etgDirectory);
+
+                    if (!File.Exists(errPath))
+                    {
+                        File.Create(errPath).Close();
+                    }
+                }
+
+                File.WriteAllText(errPath, e.ExceptionObject.ToString());
+
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("[!] Application has ran into a fatal error [!]\n");
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine($@"Wrote error to {errPath}!");
+                Console.WriteLine("\nPlease make sure to open a GitHub issue on the Plextora/EtG-Assist repository with the error!");
+                Console.WriteLine("\nPress any key to exit...");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ReadLine();
+                Environment.Exit(1);
+            }
 
             if (Process.GetProcessesByName("EtG").Length > 0)
             {
